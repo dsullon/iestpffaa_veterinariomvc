@@ -1,0 +1,19 @@
+{
+    "name": "dsullon/veterinaria-mvc",
+    "description": "Proyecto MVC Veterinaría del curso de Proyecto Informático del IESTPFFAA.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Alex Sullon",
+            "email": "alexsullonporras@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "APP\\": "./",
+            "Controllers\\": "./controllers",
+            "Models\\": "./models"
+        }
+    },
+    "require": {}
+}
