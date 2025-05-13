@@ -28,8 +28,7 @@ class Router {
         if($func){
             call_user_func($func, $this);
         } else {
-            echo 'Página no disponible';
-            //header('location:/404');
+            header('location:/404');
         }
     }
 
