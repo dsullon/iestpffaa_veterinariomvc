@@ -7,17 +7,25 @@ use Models\Servicio;
 class ServicioController {
     public static function index(Router $router){
         $data = Servicio::all();
-        foreach ($data as $servicio) {
-            $servicio->save();
-        }
         $router->render('servicios/index', [
             "servicios" => $data
         ]);
     }
 
     public static function editar(Router $router){
-        $servicio = Servicio::find(1);
-        $router->render('servicios/editar');
+        $id = $_GET['id'];
+        $servicio = Servicio::find($id);
+        $mensaje = "";
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){            
+            $servicio->sincronizar($_POST);
+            $servicio->save();
+            $mensaje = "Datos guardados";
+        }
+
+        $router->render('servicios/editar', [
+            'servicio' => $servicio,
+            'mensaje' => $mensaje
+        ]);
     }
 }
 ?>

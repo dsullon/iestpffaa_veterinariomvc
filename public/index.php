@@ -13,6 +13,7 @@ $router->get("/404", [HomeController::class, 'notfound']);
 // SERVICIOS
 $router->get('/servicios', [ServicioController::class, 'index']);
 $router->get('/servicios/editar', [ServicioController::class, 'editar']);
+$router->post('/servicios/editar', [ServicioController::class, 'editar']);
 
 $router->validarRutas();
 ?>

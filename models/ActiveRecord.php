@@ -28,12 +28,36 @@ class ActiveRecord{
         $stmt->execute([":id" => $id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($clase));
         $resultado = $stmt->fetch();
-        print_r($resultado);
+        return $resultado;
     }
 
     public function save() {
-        $propiedades = get_object_vars($this);
-        print_r("Desde la clase base");
-        print_r($propiedades);    
+       // TODO: Validar si es que se crea un nuevo registro o se actualiza
+       $propiedades = get_object_vars($this);
+       if(!isset($propiedades[static::$pk])){
+        // TODO: Implementar logíca de crear un registro
+        echo 'Crear registro';
+        $this->crear($propiedades);
+       } else {
+        // TODO: Implementar lógica de actualizar un registro
+        echo 'Actualizar registro';
+        $this->actualizar($propiedades);
+       }
+    }
+
+    function crear($propiedades){
+
+    }
+
+    function actualizar($propiedades){
+
+    }
+
+    public function sincronizar($args = []) {
+        foreach($args as $key => $value){
+            if(property_exists($this, $key)){
+                $this->$key = $value;                
+            }
+        }
     }
 }
