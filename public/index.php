@@ -14,6 +14,8 @@ $router->get("/404", [HomeController::class, 'notfound']);
 $router->get('/servicios', [ServicioController::class, 'index']);
 $router->get('/servicios/editar', [ServicioController::class, 'editar']);
 $router->post('/servicios/editar', [ServicioController::class, 'editar']);
+$router->get('/servicios/crear', [ServicioController::class, 'crear']);
+$router->post('/servicios/crear', [ServicioController::class, 'crear']);
 
 $router->validarRutas();
 ?>

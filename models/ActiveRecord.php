@@ -13,11 +13,13 @@ class ActiveRecord{
     }
 
     public static function all(){
-        $clase = new static;
         $query = "SELECT  * FROM " . static::$table;
         $stmt = self::$db->prepare($query);
         $stmt->execute();
-        $resultado = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($clase));
+        $resultado = [];
+        while($fila = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $resultado[] = self::crearObjeto($fila);
+        }
         return $resultado;
     }
 
@@ -32,25 +34,47 @@ class ActiveRecord{
     }
 
     public function save() {
-       // TODO: Validar si es que se crea un nuevo registro o se actualiza
-       $propiedades = get_object_vars($this);
-       if(!isset($propiedades[static::$pk])){
-        // TODO: Implementar logíca de crear un registro
-        echo 'Crear registro';
-        $this->crear($propiedades);
-       } else {
-        // TODO: Implementar lógica de actualizar un registro
-        echo 'Actualizar registro';
-        $this->actualizar($propiedades);
-       }
+        $propiedades = get_object_vars($this);
+        if(!isset($propiedades[static::$pk])){
+            // TODO: Implementar logíca de crear un registro
+            echo 'Crear registro';
+            $this->crear($propiedades);
+        } else {
+            $this->actualizar($propiedades);
+        }
     }
 
     function crear($propiedades){
-
+        $columnas = [];
+        foreach ($propiedades as $key => $value) {
+            if($key !== static::$pk){
+                $columnas[] = $key;
+                $places[] = ":$key";
+                $params[":$key"] = $value;
+            }
+        }
+        $query = "INSERT INTO " . static::$table . "(" . implode(", ", $columnas) . ")
+                    VALUES(" . implode(", ", $places) .")";
+        $stmt = self::$db->prepare($query);
+        $resultado = $stmt->execute($params);
+        return $resultado;
     }
 
     function actualizar($propiedades){
-
+        $columnas = [];
+        $params = [];
+        foreach ($propiedades as $key => $value) {
+            if($key !== static::$pk){
+                $columnas[] = "$key = :$key";
+                $params[":$key"] = $value; 
+            }
+        }
+        $params[":id"] = $propiedades[static::$pk];
+        $query = "UPDATE " . static::$table . " SET " . 
+            implode(", ", $columnas) . " WHERE " . static::$pk . " = :id";            
+        $stmt = self::$db->prepare($query);
+        $resultado = $stmt->execute($params);
+        return $resultado;
     }
 
     public function sincronizar($args = []) {

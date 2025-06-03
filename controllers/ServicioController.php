@@ -16,16 +16,37 @@ class ServicioController {
         $id = $_GET['id'];
         $servicio = Servicio::find($id);
         $mensaje = "";
-        if($_SERVER['REQUEST_METHOD'] ==='POST'){            
+        $errores = [];
+        if($_SERVER['REQUEST_METHOD'] ==='POST'){
             $servicio->sincronizar($_POST);
-            $servicio->save();
-            $mensaje = "Datos guardados";
+            $errores = $servicio->validar();
+            if(empty($errores)){
+                $servicio->save();
+                $mensaje = "Datos guardados";
+            }            
         }
 
         $router->render('servicios/editar', [
             'servicio' => $servicio,
-            'mensaje' => $mensaje
+            'mensaje' => $mensaje,
+            'errores' => $errores
         ]);
+    }
+
+    public static function crear(Router $router) {
+        $servicio = new Servicio();
+        $errores = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $servicio = new Servicio($_POST);
+            $errores = $servicio->validar();
+            if(empty($errores)){
+                $servicio->save();
+            }
+        }
+        $router->render('servicios/crear', [
+            'servicio' => $servicio,
+            'errores' => $errores
+        ]);        
     }
 }
 ?>
