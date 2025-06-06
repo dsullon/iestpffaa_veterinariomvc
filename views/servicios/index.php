@@ -1,27 +1,18 @@
-<h1>Servicios</h1>
-<hr>
-<a href="/servicios/crear">Nuevo Servicio</a>
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Descipción</th>
-            <th>Precio</th>
-            <th>Imagen</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($servicios as $servicio): ?>
-            <tr>
-                <td><?php echo $servicio->nombre; ?></td>
-                <td><?php echo $servicio->descripcion; ?></td>
-                <td><?php echo $servicio->precio; ?></td>
-                <td><?php echo $servicio->imagen; ?></td>
-                <td>
-                    <a href="/servicios/editar?id=<?php echo $servicio->id; ?>">Editar</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<main class="contenedor">
+    <section class="servicios">
+        <h1>Servicios</h1>
+        <div class="servicios__contenido">
+            <?php foreach ($servicios as $servicio): ?>
+            <div class="servicio">
+                <div class="servicio__imagen">
+                    <img src="<?php echo $servicio->imagen; ?>" alt="">
+                </div>
+                <p class="servicio__titulo"><?php echo $servicio->nombre; ?></p>
+                <p class="servicio__descripcion"><?php echo $servicio->descripcion; ?></p>
+                <p class="servicio__precio"><?php echo $servicio->precio; ?></p>
+            </div>
+            <?php endforeach;?>
+        </div>
+    </section>
+</main>
+

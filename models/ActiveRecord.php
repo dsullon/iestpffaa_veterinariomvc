@@ -24,12 +24,12 @@ class ActiveRecord{
     }
 
     public static function find(int $id) {
-        $clase = new static;
-        $query = "SELECT * FROM " . static::$table . " WHERE " . static::$pk . "= :id";
+        $query = "SELECT * FROM " . static::$table . " WHERE " . static::$pk . "= :id LIMIT 1";
         $stmt = self::$db->prepare($query);
         $stmt->execute([":id" => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_class($clase));
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $resultado = $stmt->fetch();
+        $resultado = self::crearObjeto($resultado);
         return $resultado;
     }
 
@@ -83,5 +83,15 @@ class ActiveRecord{
                 $this->$key = $value;                
             }
         }
+    }
+
+    protected static function crearObjeto($registro){
+        $objeto = new static;
+        foreach($registro as $clave => $valor){
+            if(property_exists($objeto, $clave)){
+                $objeto->$clave = $valor;
+            }
+        }
+        return $objeto;
     }
 }
