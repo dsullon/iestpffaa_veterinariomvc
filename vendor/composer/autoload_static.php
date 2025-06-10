@@ -18,6 +18,7 @@ class ComposerStaticInit7b9fc04dc594a12200478d5b117f5b30
         'A' => 
         array (
             'APP\\' => 4,
+            'API\\' => 4,
         ),
     );
 
@@ -33,6 +34,10 @@ class ComposerStaticInit7b9fc04dc594a12200478d5b117f5b30
         'APP\\' => 
         array (
             0 => __DIR__ . '/../..' . '/',
+        ),
+        'API\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/api',
         ),
     );
 

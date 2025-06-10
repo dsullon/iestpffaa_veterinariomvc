@@ -1,12 +1,16 @@
 <?php
 require_once __DIR__ . '/../includes/app.php';
 
+use API\APIReserva;
 use APP\Router;
 use Controllers\HomeController;
 use Controllers\ReservaController;
 use Controllers\ServicioController;
 
 $router = new Router();
+// API
+$router->get('/api/reservas', [APIReserva::class, 'procesar']);
+$router->post('/api/reservas', [APIReserva::class, 'procesar']);
 // HOME
 $router->get("/", [HomeController::class, 'index']);
 $router->get("/404", [HomeController::class, 'notfound']);

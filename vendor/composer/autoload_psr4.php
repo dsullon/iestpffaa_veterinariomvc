@@ -9,4 +9,5 @@ return array(
     'Models\\' => array($baseDir . '/models'),
     'Controllers\\' => array($baseDir . '/controllers'),
     'APP\\' => array($baseDir . '/'),
+    'API\\' => array($baseDir . '/api'),
 );

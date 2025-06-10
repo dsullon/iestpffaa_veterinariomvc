@@ -11,6 +11,7 @@
     "autoload": {
         "psr-4": {
             "APP\\": "./",
+            "API\\": "./api",
             "Controllers\\": "./controllers",
             "Models\\": "./models"
         }

@@ -13,6 +13,7 @@
         echo $contenido;
         include_once 'templates/_footer.php'
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php echo $script ?? ''; ?>
 </body>
 </html>
