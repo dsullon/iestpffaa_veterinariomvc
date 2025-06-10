@@ -11,7 +11,9 @@
     <?php
         include_once 'templates/_header.php';
         echo $contenido;
-    ?>    
+        include_once 'templates/_footer.php'
+    ?>
+    <?php echo $script ?? ''; ?>
 </body>
 </html>
 

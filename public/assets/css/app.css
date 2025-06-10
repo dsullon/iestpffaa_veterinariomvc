@@ -342,6 +342,8 @@ select {
 .footer {
     background-color: var(--azul950);
     color: var(--azul50);
+    height: 25rem;
+    margin-top: 2rem;
 }
 
 .footer__contenido {
