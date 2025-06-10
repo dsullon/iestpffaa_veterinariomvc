@@ -14,7 +14,7 @@
             <a href="/nosotros">Nosotros</a>
             <a href="/servicios">Servicios</a>
             <a href="productos">Productos</a>
-            <a href="/reservas">Reservas</a>
+            <a href="/reservas/crear">Reservas</a>
             <a href="/contacto">Contacto</a>
         </div>
     </div>

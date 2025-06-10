@@ -10,6 +10,7 @@
                 <p class="servicio__titulo"><?php echo $servicio->nombre; ?></p>
                 <p class="servicio__descripcion"><?php echo $servicio->descripcion; ?></p>
                 <p class="servicio__precio"><?php echo $servicio->precio; ?></p>
+                <a href="/reservas/crear" class="boton boton-primario">Agendar una cita</a>
             </div>
             <?php endforeach;?>
         </div>
