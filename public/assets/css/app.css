@@ -7,7 +7,7 @@
     --azul700: #076A9D;
     --azul50 : #F0F9FF;
     --blanco : #FFFFFF;
-    --gris: #71717A
+    --gris: #71717A;
     --separacion: 5rem;
     --fuente_headings: "Poppins", sans-serif;
     --fuente_textos: 'Open Sans', sans-serif;
@@ -27,14 +27,14 @@ html {
     box-sizing: border-box;
     height: 100%;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 body {
     font-family: var(--fuente_textos);
     font-size: var(--tamano_fuente);
     min-height: 100%;
-    color: var(--color_fuente);
+    color: var(--color_fuente);    
 }
 
 h1, h2, h3 {
@@ -45,7 +45,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 h2 {
@@ -53,17 +53,44 @@ h2 {
 }
 
 h3 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 img {
     max-width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: var(--azul900);
+}
+a:hover {
+    color: var(--azul700);
+}
+
 .contenedor {
     max-width: 1200px;
     width: 95%;
     margin: 0 auto;
+}
+
+.boton {
+    display: block;
+    text-align: center;
+    border-radius: .5rem;
+    padding: .5rem .75rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.boton-primario {
+    background-color: var(--azul950);
+    color: var(--azul50);
+}
+
+.boton-primario:hover {
+    background-color: var(--azul900);
+    color: var(--blanco);
 }
 
 /*HEADER*/
@@ -275,20 +302,36 @@ select {
     }
 }
 
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.servicio img {
+    border: 3px solid var(--blanco);
+    border-radius: 1rem;
+    box-shadow: 0 0 .4rem 0 var(--gris);
+    margin-bottom: 1rem;
+}
+
 .servicio__titulo {
     text-transform: uppercase;
     text-align: center;
-    font-weight: bold;
     margin-bottom: .5rem;
+    color: var(--azul900);
 }
 
 .servicio__precio {
-    font-weight: bold;
+    color: var(--azul800);   
 }
 
-.servicio__titulo, .servicio__precio {
-    color: var(--azul700);    
+.servicio__titulo, .servicio__precio {     
     font-size: 2rem;
+    font-weight: bold;    
+    line-height: 1.8;
 }
 
 .servicio__precio::before {
