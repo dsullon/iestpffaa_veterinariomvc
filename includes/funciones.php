@@ -5,3 +5,12 @@ function depurar($variable) {
     echo "</pre>";
     //exit;
 }
+
+function respuestaAPI(bool $estado = false, string $mensaje = "", array $data = []){
+    $respuesta = [
+        'estado' => $estado,
+        'mensaje' => $mensaje,
+        'data' => $data
+    ];
+    return $respuesta;
+}

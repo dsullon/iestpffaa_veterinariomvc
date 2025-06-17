@@ -25,11 +25,12 @@
         }
 
         const datos = new FormData;
-        datos.append('nombre', nombre.value);
+        datos.append('cliente', nombre.value);
         datos.append('email', email.value);
         datos.append('fecha', fecha.value);
         datos.append('hora', hora.value);
-        datos.append('servicio', servicio.value);
+        datos.append('servicioId', servicio.value);
+        datos.append('accion', 'create');
 
         Swal.fire({
             title: 'Registrando reserva',
@@ -49,7 +50,7 @@
             if(resultado.estado){
                 Swal.fire('Exito', 'Datos procesado', 'success'); 
             } else {
-                Swal.fire('Error', 'No se puedo completar la operación', 'error'); 
+                Swal.fire('Error', resultado.mensaje, 'error'); 
             }
         } catch (error) {
            Swal.fire('Error', 'Error al intentar registrar la reserva', 'error'); 

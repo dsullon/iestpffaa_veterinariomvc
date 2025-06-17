@@ -28,7 +28,7 @@
             <select name="servicio" id="servicio">
                 <option value="" disabled selected>--SELECCIONE--</option>
                 <?php foreach($servicios as $servicio): ?>
-                    <option><?php echo $servicio->nombre ?> </option>
+                    <option value="<?php echo $servicio->id; ?>"><?php echo $servicio->nombre ?> </option>
                 <?php endforeach; ?>
             </select>
         </div>
