@@ -13,8 +13,11 @@
             "APP\\": "./",
             "API\\": "./api",
             "Controllers\\": "./controllers",
-            "Models\\": "./models"
+            "Models\\": "./models",
+            "Classes\\": "./classes"
         }
     },
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    }
 }

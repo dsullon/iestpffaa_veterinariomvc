@@ -22,5 +22,4 @@ class Producto extends ActiveRecord{
         $this->categoriaId = $args['categoriaId'] ?? '';
         $this->estado = $args['estado'] ?? 1;
     }
-
 }

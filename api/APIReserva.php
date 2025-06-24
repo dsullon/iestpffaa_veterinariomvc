@@ -2,7 +2,9 @@
 
 namespace API;
 
+use Classes\Email;
 use Models\Reserva;
+use Models\Servicio;
 
 class APIReserva {
     public static function procesar(){
@@ -30,7 +32,21 @@ class APIReserva {
         } else {
             $exito = $reserva->save();
             if($exito){
-                $respuesta = respuestaAPI(estado: true, mensaje: "Registro creado");
+                $reserva->servicio = Servicio::find($reserva->servicioId);
+                $data = [
+                    'cliente' => $reserva->cliente,
+                    'email' => $reserva->email,
+                    'fecha' => $reserva->fecha,
+                    'hora' => $reserva->hora,
+                    'servicio' => $reserva->servicio->nombre
+                ];
+                $mail = new Email();
+                $status = $mail->confirmacionReserva($data);
+                if($status){
+                    $respuesta = respuestaAPI(estado: true, mensaje: "Registro creado");
+                } else {
+                    $respuesta = respuestaAPI(estado: true, mensaje: "Registro creado pero hubo un error en el envío de email");
+                }
             } else {
                 $respuesta = respuestaAPI(mensaje: "No se ha podido registrar la reserva");
             }
