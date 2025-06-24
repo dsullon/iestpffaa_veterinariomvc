@@ -9,18 +9,21 @@
                         <select name="cat" id="servicio">
                             <option value="0" selected>--TODOS--</option>
                             <?php foreach($categorias as $categoria): ?>
-                                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre ?> </option>
+                                <option value="<?php echo $categoria->id; ?>" 
+                                    <?php echo $filtroCat == $categoria->id ? 'selected' : ''; ?> >
+                                    <?php echo $categoria->nombre ?> 
+                                </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="row campo">
                         <div class="col">
                             <label for="min">Precio min.</label>
-                            <input type="number" name="min"/>
+                            <input type="number" name="min" value="<?php echo $filtroMin; ?>"/>
                         </div>
                         <div class="col">
                             <label for="max">Precio max.</label>
-                            <input type="number" name="max"/>
+                            <input type="number" name="max" value="<?php echo $filtroMax; ?>"/>
                         </div>
                     </div>
                     <div class="form-button">
@@ -38,7 +41,11 @@
                         <p><?php echo $producto->descripcion; ?></p>
                         <div class="producto__info">
                             <p class="producto__precio"><?php  echo $producto->precio; ?></p>
-                            <button class="boton boton-sm boton-secundario">
+                            <button 
+                                class="boton boton-sm boton-secundario btnAgregarCarrito"
+                                data-producto="<?php echo $producto->id; ?>"
+                                data-nombre_producto="<?php echo $producto->nombre ?>"
+                                >
                                 Agregar
                             </button>
                         </div>    
@@ -48,3 +55,5 @@
         </div>
     </div>
 </main>
+
+<?php $script = '<script src="/assets/js/carrito.js"></script>'; ?>
