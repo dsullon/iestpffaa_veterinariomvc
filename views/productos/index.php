@@ -44,7 +44,6 @@
                             <button 
                                 class="boton boton-sm boton-secundario btnAgregarCarrito"
                                 data-producto="<?php echo $producto->id; ?>"
-                                data-nombre_producto="<?php echo $producto->nombre ?>"
                                 >
                                 Agregar
                             </button>

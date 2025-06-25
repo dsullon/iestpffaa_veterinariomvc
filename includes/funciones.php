@@ -1,4 +1,6 @@
 <?php
+define("BASE_URL", "http://veterinaria:81/");
+
 function depurar($variable) {
     echo "<pre>";
     var_dump($variable);

@@ -77,6 +77,14 @@ a:hover {
     margin: 0 auto;
 }
 
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .row {
     display: flex;
     gap: 2.5rem;
@@ -111,7 +119,7 @@ a:hover {
 }
 
 .boton-sm {
-    padding: .3rem 2rem;
+    padding: .3rem 1rem;
 }
 
 .boton-primario {
@@ -133,6 +141,10 @@ a:hover {
     background-color: #E85C5C;
     color: var(--blanco);
     text-decoration: none;
+}
+
+button img {
+    height: 2.4rem;
 }
 
 /*HEADER*/
@@ -441,6 +453,20 @@ select {
 
 .producto__precio::before {
     content: "S/ ";
+}
+
+.carrito {
+    margin-top: 2rem;;
+}
+
+.carrito__imagen{
+    width: 6.5rem;
+}
+
+.carrito__acciones{
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;;
 }
 
 
