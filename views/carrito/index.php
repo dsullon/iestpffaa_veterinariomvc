@@ -47,7 +47,7 @@
                     </tfoot>
                 </table>
                 <div class="carrito__acciones">
-                    <button class="boton boton-secundario">Comprar</button>
+                    <a href="/compra" class="boton boton-secundario">Comprar</a>
                 </div>
             </div>
         </div>

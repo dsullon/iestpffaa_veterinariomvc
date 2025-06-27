@@ -12,4 +12,11 @@ class CarritoController{
             'carrito' => $carrito
         ]);
     }
+
+    public static function compra(Router $router){
+        isAuth();
+        $router->render('carrito/compra', [
+
+        ]);
+    }
 }

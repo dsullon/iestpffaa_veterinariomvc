@@ -6,6 +6,9 @@
                 <a href="tel:+51 999999999">+51 999999999</a>
                 <a href="mailto:ventas@vet.pe">ventas@vet.pe</a>
             </div>
+            <a href="/carrito">
+                <img src="assets/img/car.svg" alt="Ver carrito">
+            </a>
         </div>
     </div>
     <div class="header__nav">
@@ -13,7 +16,7 @@
             <a href="/">Inicio</a>
             <a href="/nosotros">Nosotros</a>
             <a href="/servicios">Servicios</a>
-            <a href="productos">Productos</a>
+            <a href="/productos">Productos</a>
             <a href="/reservas/crear">Reservas</a>
             <a href="/contacto">Contacto</a>
         </div>

@@ -54,7 +54,6 @@
             }
         } catch (error) {
            Swal.fire('Error', 'Error al intentar registrar la reserva', 'error'); 
-        }
-        
+        }        
     }
 })();

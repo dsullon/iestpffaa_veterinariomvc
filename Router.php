@@ -6,7 +6,6 @@ class Router {
     public array $getRoutes = [];
     public array $postRoutes = [];
 
-
     public function get($url, $func) {
         $this->getRoutes[$url] = $func;
     }
@@ -24,7 +23,6 @@ class Router {
         } else {
             $func = $this->postRoutes[$rutaActual] ?? null;
         }
-
         if($func){
             call_user_func($func, $this);
         } else {
