@@ -1,5 +1,5 @@
 <main class="contenedor">
-    <section class="servicios">
+    <section class="servicios mt-2">
         <h1>Servicios</h1>
         <div class="servicios__contenido">
             <?php foreach ($servicios as $servicio): ?>

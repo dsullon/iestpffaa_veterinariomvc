@@ -16,7 +16,7 @@ class APIReserva {
             if($accion == "create"){
                 $respuesta = self::registrarReserva($_POST);
             } else {
-                $respuesta = respuestaAPI(mensaje: "Acción no implementado");
+                $respuesta = respuestaAPI(mensaje: "Operación no implementada");
             }
         } else {
             $respuesta = respuestaAPI(mensaje: "Método no implementado");

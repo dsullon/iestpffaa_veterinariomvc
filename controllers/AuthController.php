@@ -11,7 +11,18 @@ class AuthController{
     }
 
     public static function login(Router $router) {
-        depurar(uniqid());
         $router->render('auth/login');
+    }
+
+    public static function registrar(Router $router){
+        $router->render('auth/registrar');
+    }
+
+    public static function confirmar(Router $router) {
+        $router->render('auth/confirmar');
+    }
+
+    public static function olvide(Router $router) {
+        $router->render('auth/olvide');
     }
 }

@@ -1,5 +1,5 @@
 <main class="contenedor">
-    <div class="productos">
+    <div class="productos mt-2">
         <h1>Productos</h1>
         <div class="productos__contenedor">
             <div class="productos_filtros">
