@@ -83,6 +83,14 @@ a:hover {
     margin-top: 2rem;
 }
 
+.text-success{
+    color: green;
+}
+
+.text-error {
+    color: red;
+}
+
 .contenedor {
     max-width: 1200px;
     width: 95%;
@@ -505,6 +513,15 @@ select {
     display: inline-block;
     margin-top: 1.5rem;
     font-size: 1.5rem;
+}
+
+.confirmar__contenido {
+    max-width: 40rem;
+    margin: .5rem auto;
+}
+
+.confirmar__contenido p {
+    margin-bottom: 1rem;
 }
 
 

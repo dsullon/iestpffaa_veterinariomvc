@@ -42,7 +42,28 @@ class Email {
         $this->mailer->Subject = 'Reserva de cita';
         $this->mailer->Body = $contenido;
         $status = $this->mailer->send();
-        depurar($this->mailer->ErrorInfo);
+        return $status;
+    }
+
+    public function confirmacionRegistro($datos){
+        $this->mailer->setFrom('contacto@veterinaria.pe', 'Contacto');
+        $this->mailer->addAddress($datos['email'], $datos['usuario']);
+
+        $this->mailer->isHTML(true);
+        $this->mailer->CharSet = "UTF-8";
+
+        $contenido = "<html>
+            <p>Hola {$datos['usuario']},</p>
+            <p>Gracias por registrarte en <strong>" . NOMBRE_PROYECTO . "</strong>. Para completar tu registro y activar tu cuenta, por favor utiliza el siguiente enlace de confirmación.</p>
+            <p><a href='" . BASE_URL . "auth/confirmar?token=" . $datos['token'] ."'>Activar mi cuenta</a></p>
+            <p>Este paso es necesario para verificar tu correo electrónico y comenzar a disfrutar de nuestros servicios.</p>
+            <p><em>Si no has solicitado esta cuenta, por favor ignora este mensaje.</em></p>
+            <p><strong> Equipo " . NOMBRE_PROYECTO . "</strong></p>
+        </html>";
+
+        $this->mailer->Subject = "Bienvenido(a) a " . NOMBRE_PROYECTO;
+        $this->mailer->Body = $contenido;
+        $status = $this->mailer->send();
         return $status;
     }
 }

@@ -269,6 +269,9 @@ class ActiveRecord{
     public function save() {
         $resultado = false;
         $propiedades = get_object_vars($this);
+        // ELIMINAR ATRIBUTOS INNECESARIOS
+        unset($propiedades['page'], $propiedades['perPage'], $propiedades['query'], $propiedades['params'], $propiedades['orderBy']);
+        
         if(!isset($propiedades[static::$pk])){
             $resultado = $this->crear($propiedades);
         } else {

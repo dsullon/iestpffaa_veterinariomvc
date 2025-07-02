@@ -1,6 +1,7 @@
 <?php
 namespace API;
 
+use Classes\Email;
 use Models\Usuario;
 
 class APIAuth {
@@ -30,11 +31,18 @@ class APIAuth {
         if($existe){
             $respuesta = respuestaAPI(mensaje: "El email ingresado ya existe");
         } else {
-            $usuario->uid = md5(uniqid());
+            $usuario->uid = uniqid();
             $usuario->hashPassword();
-            $usuario->token = uniqid();
+            $usuario->token = md5(uniqid());;
             $exito = $usuario->save();
             if($exito){
+                $email = new Email();
+                $data = [
+                    'email' => $usuario->email,
+                    'usuario' => $usuario->nombres,
+                    'token' => $usuario->token
+                ];
+                $email->confirmacionRegistro($data);
                 $respuesta = respuestaAPI(estado: true, mensaje: "Registro creado");
             }
         }

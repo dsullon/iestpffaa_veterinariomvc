@@ -29,7 +29,7 @@
 
         const url = '/api/usuarios';
         let data = new FormData();
-        data.append('nombre', nombre.value);
+        data.append('nombres', nombre.value);
         data.append('email', email.value);
         data.append('telefono', telefono.value);
         data.append('direccion', direccion.value);
@@ -49,7 +49,20 @@
                 body: data
             });
             const resultado = await respuesta.json();
-            // TODO: Procesar los resultados
+            if(resultado.estado){
+                Swal.fire({
+                    html: 'Sus datos han sido registrados. Por favor siga las instrucciones enviadas a su correo electrónico para confirmar su cuenta',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    icon: 'success'
+                }).then((resultado) => {
+                    if(resultado.isConfirmed){
+                        window.location = '/login';
+                    }
+                });
+            } else {
+                Swal.fire('Error', 'No se ha podido registrar al usuario', 'error');
+            }
         } catch (error) {
             Swal.fire('Error', 'No se ha podido completar el registro.', 'error');
         }

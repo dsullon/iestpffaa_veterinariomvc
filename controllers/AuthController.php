@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use APP\Router;
+use Models\Usuario;
 
 class AuthController{
 
@@ -19,7 +20,23 @@ class AuthController{
     }
 
     public static function confirmar(Router $router) {
-        $router->render('auth/confirmar');
+        $token = $_GET['token'] ?? '';
+        $filtro = ['campo' => 'token', 'operador' => '=', 'valor' => $token];
+        $usuario = Usuario::where([$filtro])->get();
+        $mensaje = "El token enviado no es correcto";
+        $estado = false;
+        if($usuario){
+            $mensaje = "La cuenta se ha activado correctamente";
+            $estado = true;
+            $usuario = $usuario[0];
+            $usuario->token = "";
+            $usuario->confirmado = 1;
+            $usuario->save();
+        }        
+        $router->render('auth/confirmar', [
+            'mensaje' => $mensaje,
+            'estado' => $estado
+        ]);
     }
 
     public static function olvide(Router $router) {
