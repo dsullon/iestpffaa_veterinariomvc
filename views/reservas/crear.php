@@ -1,14 +1,16 @@
 <main class="contenedor">
     <div class="reserva mt-2">
-        <h1>Reserva de servicio</h1>
-        <p>
-            Agenda fácilmente nuestros <strong>servicios veterinarios</strong> como consulta, vacunación, baño, peluquería y más, eligiendo el día y la hora que mejor se ajusten a ti y a tu mascota. Nuestro sistema de reservas está diseñado para brindarte una atención oportuna, rápida y confiable, asegurando el bienestar de tu compañero peludo en cada visita.
-        </p>
         <div class="reserva__contenedor">
             <div class="reserva__info">
-                
+                <h1>Reserva de servicio</h1>
+                <p>
+                    En nuestra sección de Reserva de Servicios puedes agendar fácilmente la atención que tu engreído necesita, desde consultas veterinarias hasta baños, vacunas y más.
+                </p>
+                <p>
+                    Elige el día y la hora que mejor se adapten a ti, y déjanos cuidar de tu mascota como se merece, con cariño y profesionalismo.
+                </p>                
             </div>
-            <form>
+            <form class="card">
                 <div class="campo">
                     <label for="nombre">Nombres:</label>
                     <input type="text" name="nombre" id="nombre" 

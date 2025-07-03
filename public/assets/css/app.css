@@ -497,8 +497,16 @@ select {
 @media(min-width: 768px){
     .reserva__contenedor{
         display: grid;
+        gap: 2.5rem;
         grid-template-columns: repeat(2, 1fr);
+        width: 80rem;
+        margin: 0 auto;
     }
+}
+
+.reserva__info p {
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
 }
 
 
