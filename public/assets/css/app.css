@@ -399,6 +399,9 @@ select {
         gap: 2.5rem;
     }    
 }
+.nosotros__mision h2 {
+    margin-bottom: .8rem;
+}
 
 /*SERVICIOS*/
 @media(min-width: 768px){

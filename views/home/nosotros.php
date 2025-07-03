@@ -10,7 +10,7 @@
         <p>
             Nos esforzamos día a día para que cada visita sea una experiencia positiva, tanto para tu mascota como para ti.
         </p>
-        <div class="nosotros__mision">
+        <div class="nosotros__mision mt-2">
             <div>
                 <h2>Misión</h2>
                 <p>
