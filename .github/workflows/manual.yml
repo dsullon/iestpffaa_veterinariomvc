@@ -13,6 +13,6 @@ jobs:
         uses: distributhor/workflow-webhook@v2
         env:
           webhook_url: https://my.domcloud.co/api/githubdeploy
-          webhook_secret: cdf3f16f448a5652ab6cab04990ec38015a788ab
-          webhook_auth: veterinaria:HHnR__39ufx+298NqV
+          webhook_secret: b208184c0da89f0de7f44c85c23a90e8647552c4
+          webhook_auth: veterinaria:GAb7t3A+B9c(4)1hUo
           data: '{"commands":[null]}'
