@@ -5,25 +5,21 @@ namespace Classes;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Email {
-    private const HOST = "sandbox.smtp.mailtrap.io";
-    private const PORT = 2525;
-    private const EMAIL_USER = "a094c99a5b699f";
-    private const EMAIL_PASS = "f7bf99fd9e33c2";
     private $mailer;
 
     public function __construct() {
         $this->mailer = new PHPMailer();
         $this->mailer->isSMTP();
         $this->mailer->SMTPAuth = true;
-        $this->mailer->Host = self::HOST;
-        $this->mailer->Port = self::PORT;
-        $this->mailer->Username = self::EMAIL_USER;
-        $this->mailer->Password = self::EMAIL_PASS;
+        $this->mailer->Host = $_ENV['EMAIL_HOST'];
+        $this->mailer->Username = $_ENV['EMAIL_USER'];
+        $this->mailer->Password = $_ENV['EMAIL_PASS'];
+        $this->mailer->Port = $_ENV['EMAIL_PORT'];;
         //$this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     }
 
     public function confirmacionReserva($datos){
-        $this->mailer->setFrom('contacto@veterinaria.pe', 'Contacto');
+        $this->mailer->setFrom('contacto@veterinaria.pe', $_ENV['EMAIL_NAME']);
         $this->mailer->addAddress($datos['email'], $datos['cliente']);
 
         $this->mailer->isHTML(true);
@@ -54,14 +50,14 @@ class Email {
 
         $contenido = "<html>
             <p>Hola {$datos['usuario']},</p>
-            <p>Gracias por registrarte en <strong>" . NOMBRE_PROYECTO . "</strong>. Para completar tu registro y activar tu cuenta, por favor utiliza el siguiente enlace de confirmación.</p>
-            <p><a href='" . BASE_URL . "auth/confirmar?token=" . $datos['token'] ."'>Activar mi cuenta</a></p>
+            <p>Gracias por registrarte en <strong>" . $_ENV['APP_NAME'] . "</strong>. Para completar tu registro y activar tu cuenta, por favor utiliza el siguiente enlace de confirmación.</p>
+            <p><a href='" . $_ENV['APP_URL'] . "/auth/confirmar?token=" . $datos['token'] ."'>Activar mi cuenta</a></p>
             <p>Este paso es necesario para verificar tu correo electrónico y comenzar a disfrutar de nuestros servicios.</p>
             <p><em>Si no has solicitado esta cuenta, por favor ignora este mensaje.</em></p>
-            <p><strong> Equipo " . NOMBRE_PROYECTO . "</strong></p>
+            <p><strong> Equipo " . $_ENV['APP_NAME'] . "</strong></p>
         </html>";
 
-        $this->mailer->Subject = "Bienvenido(a) a " . NOMBRE_PROYECTO;
+        $this->mailer->Subject = "Bienvenido(a) a " . $_ENV['APP_NAME'];
         $this->mailer->Body = $contenido;
         $status = $this->mailer->send();
         return $status;

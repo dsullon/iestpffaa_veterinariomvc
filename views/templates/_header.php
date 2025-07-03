@@ -2,13 +2,17 @@
     <div class="header__top">
         <div class="header__top__contenido contenedor">
             <img class="header__logo" src="/assets/img/logo.svg" alt="Logo" />
-            <div class="header__info">
-                <a href="tel:+51 999999999">+51 999999999</a>
-                <a href="mailto:ventas@vet.pe">ventas@vet.pe</a>
+            <div class="header__acciones">
+                <a href="/login" class="header__link">
+                    <img src="/assets/img/user.svg" alt="Iniciar sesión">
+                    <span>Iniciar sesión</span>
+                </a>
+
+                <a href="/carrito" class="header__link header__carrito">
+                    <img src="/assets/img/shopping-cart.svg" alt="Carrito">
+                    <span>Carrito</span>
+                </a>
             </div>
-            <a href="/carrito">
-                <img src="assets/img/car.svg" alt="Ver carrito">
-            </a>
         </div>
     </div>
     <div class="header__nav">

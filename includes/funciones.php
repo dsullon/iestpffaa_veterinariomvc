@@ -1,6 +1,4 @@
 <?php
-define("BASE_URL", "http://veterinaria:81/");
-define("NOMBRE_PROYECTO", "VETERINARIA ASP");
 
 function depurar($variable) {
     echo "<pre>";

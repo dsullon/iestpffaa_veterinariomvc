@@ -1,3 +1,3 @@
 <?php
 
-$db = new PDO("mysql:host=localhost;dbname=veterinaria", "iestpffaa", "123456");
+$db = new PDO("mysql:host=" . $_ENV['DB_HOST'] .";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USR'], $_ENV['DB_PASS']);

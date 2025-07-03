@@ -47,7 +47,7 @@ class APICarrito {
                 'nombre' => $producto->nombre,
                 'precio' => $producto->precio,
                 'cantidad' => $cantidad,
-                'imagen' => BASE_URL . $producto->imagen
+                'imagen' => $_ENV['APP_URL'] . $producto->imagen
             ];
             $carrito[] = $productoAgregar;
         }

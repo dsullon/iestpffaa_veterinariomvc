@@ -15,7 +15,7 @@ class Router {
     }
 
     public function validarRutas() {
-        $rutaActual = $_SERVER['PATH_INFO'] ?? '/';
+        $rutaActual = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
         $metodoActual = $_SERVER['REQUEST_METHOD'];
 
         if($metodoActual === 'GET'){

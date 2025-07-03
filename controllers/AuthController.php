@@ -20,19 +20,21 @@ class AuthController{
     }
 
     public static function confirmar(Router $router) {
-        $token = $_GET['token'] ?? '';
-        $filtro = ['campo' => 'token', 'operador' => '=', 'valor' => $token];
-        $usuario = Usuario::where([$filtro])->get();
+        $token = $_GET['token'] ?? '';        
         $mensaje = "El token enviado no es correcto";
         $estado = false;
-        if($usuario){
-            $mensaje = "La cuenta se ha activado correctamente";
-            $estado = true;
-            $usuario = $usuario[0];
-            $usuario->token = "";
-            $usuario->confirmado = 1;
-            $usuario->save();
-        }        
+        if($token){
+            $filtro = ['campo' => 'token', 'operador' => '=', 'valor' => $token];
+            $usuario = Usuario::where([$filtro])->get();
+            if($usuario){
+                $mensaje = "La cuenta se ha activado correctamente";
+                $estado = true;
+                $usuario = $usuario[0];
+                $usuario->token = "";
+                $usuario->confirmado = 1;
+                $usuario->save();
+            }        
+        }         
         $router->render('auth/confirmar', [
             'mensaje' => $mensaje,
             'estado' => $estado
