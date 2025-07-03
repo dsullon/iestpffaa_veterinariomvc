@@ -28,7 +28,9 @@ $router->get('/auth/confirmar', [AuthController::class, 'confirmar']);
 
 // HOME
 $router->get("/", [HomeController::class, 'index']);
+$router->get("/nosotros", [HomeController::class, 'nosotros']);
 $router->get("/404", [HomeController::class, 'notfound']);
+
 
 // SERVICIOS
 $router->get('/servicios', [ServicioController::class, 'index']);

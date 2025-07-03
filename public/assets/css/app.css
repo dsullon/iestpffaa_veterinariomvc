@@ -40,7 +40,7 @@ body {
     font-size: var(--tamano_fuente);
     font-optical-sizing: auto;
     min-height: 100%;
-    color: var(--color_fuente);    
+    color: var(--color_fuente);
 }
 
 h1, h2, h3 {
@@ -60,6 +60,20 @@ h2 {
 
 h3 {
     font-size: 2.6rem;
+}
+
+p {
+    line-height: 1.5;
+    margin-bottom: 1.5rem; 
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 1rem;
 }
 
 img {
@@ -377,6 +391,15 @@ select {
     border-radius: .5rem;
 }
 
+/* NOSOTROS */
+@media (min-width: 768px) { 
+    .nosotros__mision {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }    
+}
+
 /*SERVICIOS*/
 @media(min-width: 768px){
     .servicios__contenido{
@@ -504,10 +527,6 @@ select {
     }
 }
 
-.reserva__info p {
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-}
 
 
 /* LOGIN*/
