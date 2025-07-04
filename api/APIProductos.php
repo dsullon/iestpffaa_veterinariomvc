@@ -2,9 +2,10 @@
 
 namespace API;
 
+use Models\Producto;
 use Models\Servicio;
 
-class APIServicios {
+class APIProductos {
     public static function procesar() {
         $respuesta = respuestaAPI(mensaje: "Metodo/Operación no implementada");
         if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -21,9 +22,9 @@ class APIServicios {
     private static function listar() {
         $resultado = [];
         $filtro = ['campo' => 'estado', 'operador' => '=', 'valor' => 1];
-        $data = Servicio::where([$filtro])->get();
-        foreach ($data as $servicio) {
-            $servicio->imagen = $_ENV['APP_URL'] . $servicio->imagen; 
+        $data = Producto::where([$filtro])->get();
+        foreach ($data as $producto) {
+            $producto->imagen = $_ENV['APP_URL'] . $producto->imagen; 
         }
         $resultado = respuestaAPI(estado: true, data: $data);
         return $resultado;        

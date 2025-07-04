@@ -3,7 +3,9 @@ require_once __DIR__ . '/../includes/app.php';
 
 use API\APIAuth;
 use API\APICarrito;
+use API\APIProductos;
 use API\APIReserva;
+use API\APIServicios;
 use APP\Router;
 use Controllers\AuthController;
 use Controllers\CarritoController;
@@ -19,6 +21,10 @@ $router->post('/api/reservas', [APIReserva::class, 'procesar']);
 $router->get('/api/carrito', [APICarrito::class, 'procesar']);
 $router->post('/api/carrito', [APICarrito::class, 'procesar']);
 $router->post('/api/usuarios', [APIAuth::class, 'procesar']);
+$router->get('/api/servicios', [APIServicios::class, 'procesar']);
+$router->post('/api/servicios', [APIServicios::class, 'procesar']);
+$router->get('/api/productos', [APIProductos::class, 'procesar']);
+$router->post('/api/productos', [APIProductos::class, 'procesar']);
 
 // AUTH
 $router->get("/login", [AuthController::class, 'login']);
