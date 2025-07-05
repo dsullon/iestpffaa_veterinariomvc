@@ -52,4 +52,27 @@ class APIAuth {
 
     return $respuesta;
   }
+
+  public static function login() {
+    $respuesta = respuestaAPI(mensaje: "Usuario o password incorrecto o el usuario no se encuentra activo.");
+    $auth = new Usuario($_POST);
+    $alertas = $auth->validarLogin();
+    if(empty($alertas)){
+        $filtros = [
+            ['campo' => 'email', 'operador' => '=', 'valor' => $auth->email ],
+            ['campo' => 'confirmado', 'operador' => '=', 'valor' => 1 ]
+        ];
+        $usuario = Usuario::where($filtros)->get();
+        if($usuario[0] && $usuario[0]->comprobarPassword($auth->password)){
+            $usuario = $usuario[0];
+            session_start();
+            $_SESSION['login'] = true;
+            $_SESSION['usuario'] = $usuario->nombres;
+            $_SESSION['email'] = $usuario->email;
+            $respuesta = respuestaAPI(estado:true, data: ['data' => $usuario]);
+        }
+    }
+    echo json_encode($respuesta);
+  }
+
 }

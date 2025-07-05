@@ -35,7 +35,29 @@ class Usuario extends ActiveRecord{
         return $errores;
     }
 
+    public function validarLogin() {
+        $errores = [];        
+        if(!$this->email) {
+            $errores['error'][] = 'El Email del usuario es obligatorio';
+        }
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            $errores['error'][] = 'Email no válido';
+        }
+        if(!$this->password) {
+            $errores['error'][] = 'El Password no puede ir vacio';            
+        }        
+        return $errores;
+    }
+
     public function hashPassword() {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+
+    public function comprobarPassword($password) {
+        $passwordValido = password_verify($password, $this->password);
+        if($passwordValido) {
+           return true;
+        }
+        return false;
     }
 }

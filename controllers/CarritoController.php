@@ -14,6 +14,7 @@ class CarritoController{
     }
 
     public static function compra(Router $router){
+        session_start();
         isAuth();
         $router->render('carrito/compra', [
 

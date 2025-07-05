@@ -1,7 +1,6 @@
 <?php
 
 namespace API;
-header('Content-Type: application/json');
 
 use Models\Servicio;
 

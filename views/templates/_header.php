@@ -3,10 +3,17 @@
         <div class="header__top__contenido contenedor">
             <img class="header__logo" src="/assets/img/logo.svg" alt="Logo" />
             <div class="header__acciones">
-                <a href="/login" class="header__link">
-                    <img src="/assets/img/user.svg" alt="Iniciar sesión">
-                    <span>Iniciar sesión</span>
-                </a>
+                <?php if(isset($_SESSION['usuario'])): ?>
+                    <a href="/usuario" class="header__link">
+                        <img src="/assets/img/user.svg" alt="Iniciar sesión">
+                        <span><?php echo $_SESSION['usuario'] ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="/login" class="header__link">
+                        <img src="/assets/img/user.svg" alt="Iniciar sesión">
+                        <span>Iniciar sesión</span>
+                    </a>
+                <?php endif; ?>
 
                 <a href="/carrito" class="header__link header__carrito">
                     <img src="/assets/img/shopping-cart.svg" alt="Carrito">

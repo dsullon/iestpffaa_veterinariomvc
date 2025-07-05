@@ -12,7 +12,7 @@
             </div>
             <div class="form-button">
                 <input type="submit"
-                    id="btnRegistrarReserva"
+                    id="btnLogin"
                     value="Iniciar sesión" 
                     class="boton boton-secundario">
             </div>
@@ -23,3 +23,5 @@
         </form>
     </div>
 </main>
+
+<?php $script = '<script src="/assets/js/auth.js"></script>'; ?>

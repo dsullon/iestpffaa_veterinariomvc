@@ -16,6 +16,7 @@ use Controllers\ServicioController;
 
 $router = new Router();
 // API
+$router->post('/api/auth/login', [APIAuth::class, 'login']);
 $router->get('/api/reservas', [APIReserva::class, 'procesar']);
 $router->post('/api/reservas', [APIReserva::class, 'procesar']);
 $router->get('/api/carrito', [APICarrito::class, 'procesar']);
