@@ -67,8 +67,8 @@ class APIAuth {
             $usuario = $usuario[0];
             session_start();
             $_SESSION['login'] = true;
+            $_SESSION['usuarioID'] = $usuario->id;
             $_SESSION['usuario'] = $usuario->nombres;
-            $_SESSION['email'] = $usuario->email;
             $respuesta = respuestaAPI(estado:true, data: ['data' => $usuario]);
         }
     }

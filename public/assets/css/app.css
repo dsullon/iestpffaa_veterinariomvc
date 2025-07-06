@@ -519,6 +519,60 @@ select {
     justify-content: flex-end;;
 }
 
+@media (min-width: 768px) {
+    .compra__contenedor {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+    }    
+}
+.compra__contenedor section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.compra__contenedor dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 16px;
+}
+
+.compra__contenedor dt {
+    font-weight: bold;
+    color: #555;
+}
+
+.compra__contenedor dd {
+    margin: 0;
+}
+
+.compra__pedido details {
+    margin-top: 1rem;
+}
+
+.compra__pedido summary {
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.compra__pedido ul {
+    padding-left: 1.5rem;
+    margin-top: 0;
+}
+
+.compra__pedido li {
+    margin-bottom: 0.5rem;
+}
+
+.compra__pedido .total {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
 /* RESERVA */
 @media(min-width: 768px){
     .reserva__contenedor{

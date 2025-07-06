@@ -55,6 +55,7 @@ $router->get('/reservas/crear', [ReservaController::class, 'crear']);
 // CARRITO
 $router->get('/carrito', [CarritoController::class, 'index']);
 $router->get('/compra', [CarritoController::class, 'compra']);
+$router->get('/confirmacion', [CarritoController::class, 'confirmacion']);
 
 $router->validarRutas();
 ?>
