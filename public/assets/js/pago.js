@@ -1,10 +1,10 @@
 (function(){
     const btnPagar = document.getElementById('btnPagarPedido');
+    let importe = document.querySelector('#total').value;
+    let email = document.querySelector('#email').value;
 
     btnPagar.addEventListener('click', function (e) {
         e.preventDefault();
-        let importe = document.querySelector('#total').value;
-        let email = document.querySelector('#email').value;
         importe = importe * 100;
         Culqi.publicKey = 'pk_test_BMvvfst6Fp66cVN5';
         const client = {
@@ -34,23 +34,37 @@
         });
         // Abre el formulario con la configuración en Culqi.settings y CulqiOptions
         Culqi.open();
-        
-    })
-    function culqi() {
-        if (Culqi.token) {
-            const token = Culqi.token;
-            window.location = '/confirmacion';
-            
-            fetch()
-                .then(respuesta => respuesta.json())
-                .then(data => {
 
-            })
-        } else if (Culqi.order) {
-            const order = Culqi.order;
-            console.log('Se ha creado el objeto Order: ', order);
-        } else {
-            console.log('Error : ',Culqi.error);
+        window.culqi = function(){
+            if (Culqi.token) {
+                const token = Culqi.token;
+                console.log(token);
+                
+                const url = '/api/carrito';
+                const data = new FormData();
+                data.append('token', token.id);
+                data.append('email', token.email);
+                data.append('importe', importe)
+                data.append('accion', 'pagar')
+                fetch(url, {
+                    method: 'POST',
+                    body: data
+                })
+                    .then(respuesta => respuesta.json())
+                    .then(data => {
+                        if(data.estado){
+                           window.location = '/confirmacion';
+                        } else {
+                            Swal.fire('Error', 'No se ha podido registrar al usuario', 'error');
+                            Culqi.close();
+                        }
+                })
+            } else if (Culqi.order) {
+                const order = Culqi.order;
+                console.log('Se ha creado el objeto Order: ', order);
+            } else {
+                console.log('Error : ',Culqi.error);
+            }
         }
-    }
+    })
 })();

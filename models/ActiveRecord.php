@@ -30,6 +30,11 @@ class ActiveRecord{
     public static function setDB($database){
         self::$db =  $database;
     }
+    
+
+    public static function getDB() {
+        return self::$db;
+    }
 
     /**
     * Ejecuta la consulta y devuelve los resultados.
@@ -293,6 +298,7 @@ class ActiveRecord{
                     VALUES(" . implode(", ", $places) .")";
         $stmt = self::$db->prepare($query);
         $resultado = $stmt->execute($params);
+        $this->{static::$pk} = self::$db->lastInsertId();
         return $resultado;
     }
 

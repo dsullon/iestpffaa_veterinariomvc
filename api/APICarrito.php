@@ -2,6 +2,9 @@
 
 namespace API;
 
+use Culqi\Culqi;
+use Models\DetallePedido;
+use Models\Pedido;
 use Models\Producto;
 
 class APICarrito {
@@ -14,6 +17,9 @@ class APICarrito {
                 $respuesta = self::agregarProducto($_POST);
             } elseif($accion == "quitar"){
                 $respuesta = self::quitarProducto($_POST);
+            
+            } elseif($accion == "pagar"){
+                $respuesta = self::pagarCompra($_POST);
             } else {
                 $respuesta = respuestaAPI(mensaje: "Operación no disponible");
             }
@@ -72,6 +78,55 @@ class APICarrito {
             if(count($carrito)==0) unset($_SESSION['carrito']);
         }        
         $respuesta = respuestaAPI(estado: true, mensaje: "Producto removido");
+        return $respuesta;
+    }
+
+    private static function pagarCompra($data) {
+        $respuesta = respuestaAPI(mensaje: "No se ha podido completar el pago");
+        /*$culqi = new Culqi(array('api_key' => $_ENV['PAYMENT_KEY_SECRET']));
+        $cargo = $culqi->Charges->create(array(
+            'email' => $data['email'],
+            'token' => $data['token'],
+            'amount' => $data['importe'],
+            'currency_code' => "PEN",
+            'description' => "Venta WEB",
+            'source_id' => $data['token']
+        ));*/
+        $cargo = true;
+        if($cargo){
+            session_start();
+            $clienteID = $_SESSION['usuarioID'];
+            $carrito = $_SESSION['carrito'];
+            $codigo = uniqid(mt_rand(), true);
+            $codigo = strtoupper(substr(md5($codigo), 0, 8));
+            $pedido = new Pedido([
+                'clienteId' => $clienteID,
+                'codigo' => $codigo,
+                'total' => $data['importe']
+            ]);
+            $errores = $pedido->validar();
+            if(empty($errores)){
+                Pedido::getDB()->beginTransaction();
+                $pedido->save();
+                foreach ($carrito as $item) {
+                    $detalle = new DetallePedido([
+                        'pedidoId' => $pedido->id,
+                        'productoId' => $item['id'],
+                        'nombreProducto' => $item['nombre'],
+                        'cantidad' => $item['cantidad'],
+                        'precio' => $item['precio'],
+                    ]);
+                    $detalle->save();
+                }
+                //TODO: Insertar en BD
+                if(Pedido::getDB()->commit()){
+                    unset($_SESSION['carrito']);
+                    $respuesta = respuestaAPI(estado: true, mensaje: "Pedido registrado con el código {$codigo}");
+                } else {
+                    $respuesta = respuestaAPI(mensaje: "No se ha podido registrar el pedido");
+                }
+            }            
+        }
         return $respuesta;
     }
 }

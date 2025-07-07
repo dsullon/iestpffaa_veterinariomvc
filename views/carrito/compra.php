@@ -22,11 +22,12 @@
                 <h2>Resumen del Pedido</h2>
                 <details>
                     <summary>Ver productos del pedido</summary>
-                    <ul>
+                    <dl>
                         <?php foreach ($items as $item): ?>
-                            <li><?php echo $item['nombre'] . ' - ' . number_format($item['precio'] * $item['cantidad'], 2); ?></li>
+                            <dt><?php echo $item['nombre']?></dt>
+                            <dd>S/ <?php echo number_format($item['precio'] * $item['cantidad'], 2); ?></dd>
                         <?php endforeach; ?>
-                    </ul>
+                    </dl>
                 </details>
                 <p class="total">Total a pagar: S/ <?php echo number_format($total, 2); ?></p>
                 <form>
@@ -45,8 +46,6 @@
         </div>
     </div>
 </main>
-
-<script src="https://checkout.culqi.com/js/v4"></script>
 
 <?php $script = '
     <script src="https://checkout.culqi.com/js/v4"></script>
