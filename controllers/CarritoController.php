@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use APP\Router;
+use Models\Pedido;
 use Models\Usuario;
 
 class CarritoController{
@@ -33,6 +34,13 @@ class CarritoController{
     public static function confirmacion(Router $router) {
         session_start();
         isAuth();
-        $router->render('carrito/confirmacion');        
+        $codigo = $_GET['codigo'] ?? '';
+        $filtros = ['campo' => 'codigo', 'operador' => '=', 'valor' => $codigo];
+        $pedido = Pedido::where([$filtros])->get();
+        if($pedido){
+            $router->render('carrito/confirmacion');
+        } else {
+            header('location: /');
+        }
     }
 }

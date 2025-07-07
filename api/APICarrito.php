@@ -121,7 +121,7 @@ class APICarrito {
                 //TODO: Insertar en BD
                 if(Pedido::getDB()->commit()){
                     unset($_SESSION['carrito']);
-                    $respuesta = respuestaAPI(estado: true, mensaje: "Pedido registrado con el código {$codigo}");
+                    $respuesta = respuestaAPI(estado: true, mensaje: "Pedido registrado.", data: $pedido);
                 } else {
                     $respuesta = respuestaAPI(mensaje: "No se ha podido registrar el pedido");
                 }

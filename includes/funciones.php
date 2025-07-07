@@ -7,7 +7,7 @@ function depurar($variable) {
     //exit;
 }
 
-function respuestaAPI(bool $estado = false, string $mensaje = "", array $data = []){
+function respuestaAPI(bool $estado = false, string $mensaje = "", mixed $data = []){
     $respuesta = [
         'estado' => $estado,
         'mensaje' => $mensaje,
