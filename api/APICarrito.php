@@ -94,16 +94,16 @@ class APICarrito {
         $cargo = true;
         if($cargo){
             session_start();
-            $clienteID = $_SESSION['usuarioID'];
-            $carrito = $_SESSION['carrito'];
+            $usuarioSesion = SessionHelper::get('usuario');
+            $carrito = SessionHelper::get('carrito');
             $codigo = uniqid(mt_rand(), true);
             $codigo = strtoupper(substr(md5($codigo), 0, 8));
             $pedido = new Pedido([
-                'clienteId' => $clienteID,
+                'clienteId' => $usuarioSesion['id'],
                 'codigo' => $codigo,
                 'total' => $data['importe']
             ]);
-            $usuario = Usuario::find($clienteID);
+            $usuario = Usuario::find($usuarioSesion['id']);
             $errores = $pedido->validar();
             if(empty($errores)){
                 Pedido::getDB()->beginTransaction();
@@ -120,7 +120,7 @@ class APICarrito {
                 }
                 //TODO: Insertar en BD
                 if(Pedido::getDB()->commit()){
-                    unset($_SESSION['carrito']);
+                    SessionHelper::remove('carrito');
                     $email = new Email();
                     $data = [
                         'email' => $usuario->email,

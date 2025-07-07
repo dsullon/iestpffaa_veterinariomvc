@@ -18,8 +18,9 @@ class CarritoController{
     public static function compra(Router $router){
         isAuth();
         $total = 0;
-        $usuario = Usuario::find($_SESSION['usuarioID']);
-        $carrito = $_SESSION['carrito'] ?? [];
+        $usuario = SessionHelper::get('usuario');
+        $usuario = Usuario::find($usuario['id']);
+        $carrito = SessionHelper::get('carrito', []);
         foreach ($carrito as $item) {
             $total += number_format($item['precio'] * $item['cantidad'], 2);
         }
