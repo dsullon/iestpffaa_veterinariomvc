@@ -89,6 +89,12 @@ a:hover {
     color: var(--azul700);
 }
 
+.layout {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
 .m-2{
     margin: 2rem;
 }
@@ -623,6 +629,18 @@ select {
     margin: .5rem auto;
 }
 
+/*CLIENTE*/
+@media (min-width: 768px) {
+    .cliente-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }    
+}
+
+.cliente__nav a {
+    display: block;
+    margin-bottom: 1.2rem;
+}
 
 /*FOOTER*/
 .footer {

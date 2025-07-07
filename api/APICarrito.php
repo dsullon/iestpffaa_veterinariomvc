@@ -3,6 +3,7 @@
 namespace API;
 
 use Classes\Email;
+use Classes\SessionHelper;
 use Culqi\Culqi;
 use Models\DetallePedido;
 use Models\Pedido;
@@ -32,14 +33,13 @@ class APICarrito {
     }
 
     private static function agregarProducto($data){
-        session_start();
         $id = $data['idProducto'];
         $cantidad = $data['cantidad'];
         $producto = Producto::find($id);
         $existe = false;
         $carrito = [];
-        if(isset($_SESSION['carrito'])){
-            $carrito = $_SESSION['carrito'];
+        if(SessionHelper::has('carrito')){
+            $carrito = SessionHelper::get('carrito');
         }
         foreach ($carrito as &$item) {
             if($item['id']==$id){
@@ -59,26 +59,23 @@ class APICarrito {
             ];
             $carrito[] = $productoAgregar;
         }
-        $_SESSION['carrito'] = $carrito;
+        SessionHelper::set('carrito', $carrito);
         $respuesta = respuestaAPI(estado: true, mensaje: "Producto agregado");
         return $respuesta;
     }
 
     private static function quitarProducto($data){
-        session_start();
         $id = $data['idProducto'];
-        $carrito = $_SESSION['carrito'];
-        if(isset($carrito)){
-            foreach ($carrito as $key => $item) {
-                if($item['id'] == $id){
-                    unset($carrito[$key]);
-                    break;
-                }
+        $carrito = SessionHelper::get('carrito', []);
+        foreach ($carrito as $key => $item) {
+            if($item['id'] == $id){
+                unset($carrito[$key]);
+                break;
             }
-            $carrito = array_values($carrito);
-            $_SESSION['carrito'] = $carrito;
-            if(count($carrito)==0) unset($_SESSION['carrito']);
-        }        
+        }
+        $carrito = array_values($carrito);
+        SessionHelper::set('carrito', $carrito);
+        if(count($carrito)==0) SessionHelper::remove('carrito');     
         $respuesta = respuestaAPI(estado: true, mensaje: "Producto removido");
         return $respuesta;
     }

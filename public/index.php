@@ -9,6 +9,7 @@ use API\APIServicios;
 use APP\Router;
 use Controllers\AuthController;
 use Controllers\CarritoController;
+use Controllers\ClienteController;
 use Controllers\HomeController;
 use Controllers\ProductoController;
 use Controllers\ReservaController;
@@ -29,6 +30,7 @@ $router->post('/api/productos', [APIProductos::class, 'procesar']);
 
 // AUTH
 $router->get("/login", [AuthController::class, 'login']);
+$router->get("/auth/salir", [AuthController::class, 'logout']);
 $router->get('/auth/registro', [AuthController::class, 'registrar']);
 $router->get('/auth/olvide', [AuthController::class, 'olvide']);
 $router->get('/auth/confirmar', [AuthController::class, 'confirmar']);
@@ -56,6 +58,10 @@ $router->get('/reservas/crear', [ReservaController::class, 'crear']);
 $router->get('/carrito', [CarritoController::class, 'index']);
 $router->get('/compra', [CarritoController::class, 'compra']);
 $router->get('/confirmacion', [CarritoController::class, 'confirmacion']);
+
+// CLIENTES
+$router->get('/clientes', [ClienteController::class, 'index']);
+$router->get('/clientes/pedidos', [ClienteController::class, 'pedidos']);
 
 $router->validarRutas();
 ?>

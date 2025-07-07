@@ -28,7 +28,7 @@
             });
             const resultado = await respuesta.json();
             if(resultado.estado){
-                window.location = '/carrito';
+                window.location = '/';
             } else {
                 Swal.fire('Error', resultado.mensaje, 'error'); 
             }

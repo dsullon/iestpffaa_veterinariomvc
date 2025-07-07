@@ -1,12 +1,16 @@
+<?php
+use Classes\SessionHelper;
+$usuario = SessionHelper::get('usuario');
+?>
 <header class="header">
     <div class="header__top">
         <div class="header__top__contenido contenedor">
             <img class="header__logo" src="/assets/img/logo.svg" alt="Logo" />
             <div class="header__acciones">
-                <?php if(isset($_SESSION['usuario'])): ?>
-                    <a href="/usuario" class="header__link">
+                <?php if(isset($usuario)): ?>
+                    <a href="/clientes" class="header__link">
                         <img src="/assets/img/user.svg" alt="Iniciar sesión">
-                        <span><?php echo $_SESSION['usuario'] ?></span>
+                        <span><?php echo $usuario['nombre']; ?></span>
                     </a>
                 <?php else: ?>
                     <a href="/login" class="header__link">

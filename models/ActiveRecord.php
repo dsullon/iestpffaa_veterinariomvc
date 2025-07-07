@@ -204,6 +204,11 @@ class ActiveRecord{
         return $instance;
     }
 
+    public function orderBy(string $campo, string $direccion = 'ASC') {
+        $this->orderBy = " ORDER BY $campo " . strtoupper($direccion);
+        return $this;
+    }
+
     protected function buildWhere(array $filtros, int &$index): array {
         $where = '';
         $params = [];

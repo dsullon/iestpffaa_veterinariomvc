@@ -6,16 +6,16 @@
                 <strong>¿Olvidaste tu contraseña?</strong>
             </p>
             <p>
-                Tranquilo, nos pasa a todos. Solo dinos tu correo electrónico y <strong>te enviaremos un enlace</strong> para que puedas crear una nueva y volver a ingresar sin problemas.
+                Tranquilo, nos pasa a todos. Solo dinos tu correo electrónico y te <strong>enviaremos un enlace</strong> para que puedas crear una nueva y volver a ingresar sin problemas.
             </p>
             <form>
                 <div class="campo">
                     <label for="email">Email</label>
-                    <input type="email" id="email">
+                    <input type="email" id="email" autocomplete="off">
                 </div>
                 <div class="form-button">
                     <input id="btnolvidePassword" class="boton boton-secundario" 
-                        type="submit" value="Enviar instrucciones" autocomplete="off">
+                        type="submit" value="Enviar instrucciones">
                 </div>
             </form>
             <p class="mt-2">

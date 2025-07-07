@@ -2,6 +2,7 @@
 namespace API;
 
 use Classes\Email;
+use Classes\SessionHelper;
 use Models\Usuario;
 
 class APIAuth {
@@ -65,10 +66,13 @@ class APIAuth {
         $usuario = Usuario::where($filtros)->get();
         if($usuario[0] && $usuario[0]->comprobarPassword($auth->password)){
             $usuario = $usuario[0];
-            session_start();
-            $_SESSION['login'] = true;
-            $_SESSION['usuarioID'] = $usuario->id;
-            $_SESSION['usuario'] = $usuario->nombres;
+            $user = [
+                'id' => $usuario->id,
+                'nombre' => $usuario->nombres,
+                'email' => $usuario->email
+            ];
+            SessionHelper::set('login', true);
+            SessionHelper::set('usuario', $user);
             $respuesta = respuestaAPI(estado:true, data: ['data' => $usuario]);
         }
     }

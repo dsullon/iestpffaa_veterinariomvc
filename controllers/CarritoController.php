@@ -2,21 +2,20 @@
 namespace Controllers;
 
 use APP\Router;
+use Classes\SessionHelper;
 use Models\Pedido;
 use Models\Usuario;
 
 class CarritoController{
 
     public static function index(Router $router){
-        session_start();
-        $carrito = $_SESSION['carrito'] ?? [];
+        $carrito = SessionHelper::get('carrito', []);
         $router->render('carrito/index', [
             'carrito' => $carrito
         ]);
     }
 
     public static function compra(Router $router){
-        session_start();
         isAuth();
         $total = 0;
         $usuario = Usuario::find($_SESSION['usuarioID']);
@@ -32,7 +31,6 @@ class CarritoController{
     }
 
     public static function confirmacion(Router $router) {
-        session_start();
         isAuth();
         $codigo = $_GET['codigo'] ?? '';
         $filtros = ['campo' => 'codigo', 'operador' => '=', 'valor' => $codigo];

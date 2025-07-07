@@ -11,6 +11,7 @@ class Pedido extends ActiveRecord{
     public $codigo;
     public $clienteId;
     public $total;
+    public $estado;
 
     public function __construct($args = []) {
         $this->id = $args['id'] ?? null;
@@ -18,6 +19,7 @@ class Pedido extends ActiveRecord{
         $this->codigo = $args['codigo'] ?? '';
         $this->clienteId = $args['clienteId'] ?? '';
         $this->total = $args['total'] ?? 0;
+        $this->estado = $args['estado'] ?? 'CO';
     }
 
     public function validar() {

@@ -8,13 +8,15 @@
     <title>Veterinaria</title>
 </head>
 <body>
-    <?php
-        include_once 'templates/_header.php';
-        echo $contenido;
-        include_once 'templates/_footer.php'
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php echo $script ?? ''; ?>
+    <div class="layout">
+        <?php include_once 'templates/_header.php'; ?>
+        <main>
+            <?php echo $contenido; ?>   
+        </main>
+        <?php include_once 'templates/_footer.php'; ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <?php echo $script ?? ''; ?>
+    </div>
 </body>
 </html>
 

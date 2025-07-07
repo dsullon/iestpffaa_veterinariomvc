@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use APP\Router;
+use Classes\SessionHelper;
 use Models\Usuario;
 
 class AuthController{
@@ -13,6 +14,11 @@ class AuthController{
 
     public static function login(Router $router) {
         $router->render('auth/login');
+    }
+
+    public static function logout() {
+        SessionHelper::destroy();
+        header('location: /');        
     }
 
     public static function registrar(Router $router){
