@@ -62,4 +62,41 @@ class Email {
         $status = $this->mailer->send();
         return $status;
     }
+
+    public function confirmacionCompra($datos){
+        $this->mailer->setFrom('contacto@veterinaria.pe', 'Contacto');
+        $this->mailer->addAddress($datos['email'], $datos['usuario']);
+
+        $this->mailer->isHTML(true);
+        $this->mailer->CharSet = "UTF-8";
+
+        $contenido = "<html>
+            <p>Hola {$datos['usuario']},</p>
+            <p>¡Gracias por tu compra en <strong>" . $_ENV['APP_NAME'] . "</strong>!</p>
+            <p>
+                Nos complace informarte que tu pedido ha sido confirmado con éxito y ya está siendo preparado con mucho cariño por nuestro equipo.
+            </p>
+            <p>
+                <strong>Código de seguimiento: </strong>{$datos['codigo']}
+            </p>
+            <p>
+                Podrás usar este código para conocer el estado de tu envío en cualquier momento.
+            </p>
+            <p>
+                Recibirás una notificación tan pronto tu pedido salga de nuestras instalaciones. Si tienes alguna duda o necesitas ayuda adicional, no dudes en escribirnos.
+            </p>
+            <p>
+                Gracias por confiar en nosotros para cuidar de tus peludos.
+            </p>
+            <p>Con aprecio,</p>
+            <p>
+                <strong> Equipo de " . $_ENV['APP_NAME'] . "</strong>
+            </p>
+        </html>";
+
+        $this->mailer->Subject = " ¡Tu pedido ha sido confirmado! - " . $_ENV['APP_NAME'];
+        $this->mailer->Body = $contenido;
+        $status = $this->mailer->send();
+        return $status;
+    }
 }

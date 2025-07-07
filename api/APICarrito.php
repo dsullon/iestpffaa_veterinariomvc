@@ -2,10 +2,12 @@
 
 namespace API;
 
+use Classes\Email;
 use Culqi\Culqi;
 use Models\DetallePedido;
 use Models\Pedido;
 use Models\Producto;
+use Models\Usuario;
 
 class APICarrito {
     public static function procesar(){
@@ -104,6 +106,7 @@ class APICarrito {
                 'codigo' => $codigo,
                 'total' => $data['importe']
             ]);
+            $usuario = Usuario::find($clienteID);
             $errores = $pedido->validar();
             if(empty($errores)){
                 Pedido::getDB()->beginTransaction();
@@ -121,6 +124,13 @@ class APICarrito {
                 //TODO: Insertar en BD
                 if(Pedido::getDB()->commit()){
                     unset($_SESSION['carrito']);
+                    $email = new Email();
+                    $data = [
+                        'email' => $usuario->email,
+                        'usuario' => $usuario->nombres,
+                        'codigo' => $pedido->codigo
+                    ];
+                    $email->confirmacionCompra($data);
                     $respuesta = respuestaAPI(estado: true, mensaje: "Pedido registrado.", data: $pedido);
                 } else {
                     $respuesta = respuestaAPI(mensaje: "No se ha podido registrar el pedido");
